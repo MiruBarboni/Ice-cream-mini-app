@@ -36,7 +36,7 @@ const DisplayImg = (id) => {
 		img.style.display = 'none';
 	});
 
-	img.style.display = 'block';
+	img.style.display = 'flex';
 	currentSlideIndex = +id;
 	indexImg.innerHTML = `1/${currentSlideIndex}`;
 
