@@ -16,6 +16,12 @@ body {
 	overflow-x: hidden;
 	overflow-y: scroll;
 }
+ul {
+	list-style: none;
+}
+a {
+	text-decoration: none;
+}
 
 ::-webkit-scrollbar {
 	height: 12px;
@@ -55,6 +61,52 @@ body {
 	width: 30px;
 	height: 4px;
 	background-color: var(--greyColor);
+}
+.menu-show {
+	transform: translateX(0) !important;
+}
+#menu {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	background-color: var(--blackColor);
+	color: var(--whiteColor);
+	font-size: 1.5rem;
+	width: 300px;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	padding-top: 100px;
+
+	z-index: 900;
+	transform: translateX(-30vw);
+	transition: transform 0.3s ease;
+}
+
+#closeMenuBtn {
+	font-size: 2.2rem;
+	text-align: center;
+	width: 60px;
+	height: 60px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 10px;
+}
+#closeMenuBtn:hover {
+	cursor: pointer;
+}
+
+.nav-item {
+	padding: 20px;
+	text-transform: uppercase;
+}
+.nav-item a {
+	color: var(--whiteColor);
+}
+.nav-item a:hover {
+	color: var(--pinkColor);
 }
 
 /* Utils */
@@ -241,7 +293,6 @@ body {
 }
 .section-list {
 	font-weight: 700;
-	list-style: none;
 	font-family: Open-Sans, sans-serif;
 	text-transform: uppercase;
 	text-align: center;

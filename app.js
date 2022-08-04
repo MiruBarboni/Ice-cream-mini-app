@@ -15,6 +15,10 @@ const dropdownArraw = document.querySelector('.dropdown-mark');
 const downloadImg = document.querySelector('#download');
 const tooltiptext = document.querySelector('.tooltiptext');
 const body = document.querySelector('body');
+const navMenuBtn = document.querySelector('.nav-menu');
+const menu = document.querySelector('#menu');
+const closeMenuBtn = document.querySelector('#closeMenuBtn');
+const navItems = document.querySelectorAll('.nav-item');
 
 let currentSlideIndex = 1;
 const nrOfImages = images.length;
@@ -90,13 +94,35 @@ closeBtn.addEventListener('click', () => {
 });
 
 shareBtn.addEventListener('click', () => {
-	shareDropdownMenu.classList.toggle('share-dropdown-menu-show');
+	shareDropdownMenu.classList.add('share-dropdown-menu-show');
 	backDrop.style.display = 'block';
 	dropdownArraw.classList.add('dropdown-mark-show');
 });
 
 backDrop.addEventListener('click', () => {
-	shareDropdownMenu.classList.toggle('share-dropdown-menu-show');
+	shareDropdownMenu.classList.remove('share-dropdown-menu-show');
 	backDrop.style.display = 'none';
 	dropdownArraw.classList.remove('dropdown-mark-show');
+	menu.classList.remove('menu-show');
+	body.style.overflowY = 'scroll';
+});
+
+navMenuBtn.addEventListener('click', () => {
+	menu.classList.add('menu-show');
+	body.style.overflowY = 'hidden';
+	backDrop.style.display = 'block';
+});
+
+closeMenuBtn.addEventListener('click', () => {
+	menu.classList.remove('menu-show');
+	body.style.overflowY = 'scroll';
+	backDrop.style.display = 'none';
+});
+
+navItems.forEach((navItem) => {
+	navItem.addEventListener('click', () => {
+		menu.classList.remove('menu-show');
+		body.style.overflowY = 'scroll';
+		backDrop.style.display = 'none';
+	});
 });
