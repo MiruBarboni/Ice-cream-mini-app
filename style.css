@@ -5,6 +5,7 @@
 	--greyColor: #8d99ae;
 	--blackColor: #111;
 }
+
 * {
 	margin: 0;
 	padding: 0;
@@ -21,6 +22,9 @@ ul {
 }
 a {
 	text-decoration: none;
+}
+textarea {
+	resize: none;
 }
 
 ::-webkit-scrollbar {
@@ -80,8 +84,8 @@ a {
 	padding-top: 100px;
 
 	z-index: 900;
-	transform: translateX(-30vw);
-	transition: transform 0.3s ease;
+	transform: translateX(-100vw);
+	transition: transform 0.1s ease;
 }
 
 #closeMenuBtn {
@@ -107,6 +111,18 @@ a {
 }
 .nav-item a:hover {
 	color: var(--pinkColor);
+}
+.successMsg {
+	display: none;
+	font-size: 1rem;
+	font-weight: bold;
+	text-align: center;
+	color: #2dc653;
+	padding: 5px 20px;
+	margin: 10px 0;
+}
+.successMsg-show {
+	display: block;
 }
 
 /* Utils */
@@ -642,22 +658,51 @@ a {
 	display: flex;
 	flex-direction: column;
 }
-#contact-form input,
-textarea {
-	padding: 10px 12px;
-	border: none;
-	border-bottom: 1px solid var(--blackColor);
-	margin-bottom: 10px;
+#contact-form div {
+	margin-bottom: 15px;
 }
 
-.btn-submit {
+#name,
+#email,
+#msg {
 	width: 100%;
-	transform: background-color 0.5s ease;
+	padding: 5px 0px;
+	border: none;
+	box-shadow: 0px 2px 2px -1px rgb(0, 0, 0, 0.25);
+}
+
+#name:focus,
+#email:focus,
+#msg:focus {
+	outline: none;
+	box-shadow: 0px 2px 2px -1px var(--pinkColor);
+}
+
+#btn-submit {
+	width: 100%;
+	transform: all 0.5s ease-in-out;
 	margin-top: 0;
 }
-.btn-submit:hover {
+#btn-submit:disabled {
+	background-color: var(--greyColor);
+	opacity: 0.3;
+}
+#btn-submit:hover:enabled {
+	cursor: pointer;
 	background-color: var(--blackColor);
 }
+
+.nameError {
+	display: none;
+	font-size: 0.8em;
+	color: var(--redColor);
+	padding: 5px 0px;
+}
+
+.nameError.visible {
+	display: block;
+}
+
 .contact-img {
 	background-image: url('https://images01.nicepage.com/c461c07a441a5d220e8feb1a/3729a429094d57ada6eb8295/ice-cream-with-fresh-berries_144627-32252.jpg');
 	height: 600px;
@@ -788,7 +833,8 @@ textarea {
 		width: 400px;
 	}
 	.container-7 {
-		height: 400px;
+		height: 600px;
+		width: 600px;
 		left: 200px;
 	}
 }
@@ -952,6 +998,7 @@ textarea {
 		height: 400px;
 	}
 	.container-7 {
+		height: 500px;
 		width: 300px;
 	}
 	.section-7 .section-title {
@@ -1014,6 +1061,10 @@ textarea {
 }
 @media (max-width: 480px) {
 	/* smartphones, Android phones, landscape iPhone */
+	#menu {
+		font-size: smaller;
+	}
+
 	.showcase-container {
 		width: 400px;
 		height: 400px;
@@ -1141,6 +1192,7 @@ textarea {
 		font-size: 0.8rem;
 	}
 }
+
 @media (max-width: 360px) {
 	/* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
 
@@ -1202,5 +1254,8 @@ textarea {
 	}
 	.user {
 		width: 270px;
+	}
+	.container-7 {
+		height: 400px;
 	}
 }

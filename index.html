@@ -339,23 +339,60 @@
 			<div class="rectangle"></div>
 			<div class="section-container container-7">
 				<h3 class="section-title">Contact Us</h3>
-				<form action="" id="contact-form">
-					<input type="text" class="name" placeholder="Enter your Name" />
-					<input
-						type="text"
-						class="email"
-						placeholder="Enter a valid email address"
-					/>
+				<form id="contact-form">
+					<div>
+						<input
+							id="name"
+							type="text"
+							class="name"
+							placeholder="Enter your Name"
+						/>
+						<span
+							role="alert"
+							class="nameError"
+							aria-hidden="true"
+							id="name-errorText"
+						>
+						</span>
+					</div>
 
-					<textarea
-						placeholder="Enter your message"
-						name="msg"
-						id=""
-						cols="30"
-						rows="5"
-					></textarea>
+					<div>
+						<input
+							id="email"
+							type="text"
+							class="email"
+							placeholder="Enter a valid email address"
+						/>
+						<span
+							role="alert"
+							class="nameError"
+							aria-hidden="true"
+							id="email-errorText"
+						>
+						</span>
+					</div>
+
+					<div>
+						<textarea
+							placeholder="Enter your message"
+							name="msg"
+							id="msg"
+							cols="30"
+							rows="5"
+						></textarea>
+						<span
+							role="alert"
+							class="nameError"
+							aria-hidden="true"
+							id="msg-errorText"
+						>
+						</span>
+					</div>
+					<button id="btn-submit" class="btn bg-red" disabled type="submit">
+						SUBMIT
+					</button>
+					<span class="successMsg">Thank you for getting in touch! </span>
 				</form>
-				<button class="btn btn-submit bg-red">SUBMIT</button>
 			</div>
 			<div class="section-container bg-img contact-img"></div>
 		</section>

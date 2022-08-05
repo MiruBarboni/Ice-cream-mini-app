@@ -19,6 +19,7 @@ const navMenuBtn = document.querySelector('.nav-menu');
 const menu = document.querySelector('#menu');
 const closeMenuBtn = document.querySelector('#closeMenuBtn');
 const navItems = document.querySelectorAll('.nav-item');
+const submitBtn = document.querySelector('#btn-submit');
 
 let currentSlideIndex = 1;
 const nrOfImages = images.length;
@@ -126,3 +127,91 @@ navItems.forEach((navItem) => {
 		backDrop.style.display = 'none';
 	});
 });
+
+//client-side validation
+const nameField = document.getElementById('name');
+const emailField = document.getElementById('email');
+const msgField = document.getElementById('msg');
+
+const nameError = document.querySelector('#name-errorText');
+const emailError = document.querySelector('#email-errorText');
+const msgError = document.querySelector('#msg-errorText');
+
+const contactForm = document.querySelector('#contact-form');
+const successMsg = document.querySelector('.successMsg');
+
+const checkEmptyField = (field, errorText) => {
+	let isEmpty = true;
+	if (!field.value) {
+		errorText.innerHTML = `Your ${field.id} is required!`;
+		errorText.classList.add('visible');
+		errorText.setAttribute('aria-hidden', false);
+		errorText.setAttribute('aria-invalid', true);
+		isEmpty = true;
+	} else {
+		errorText.classList.remove('visible');
+		isEmpty = false;
+	}
+	if (field === emailField && isEmpty === false) {
+		validateEmail(emailField);
+	}
+	return isEmpty;
+};
+const emailRegex =
+	/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+const validateEmail = (emailField) => {
+	console.log(emailField.value);
+	if (emailRegex.test(emailField.value)) {
+		return true;
+	}
+	emailError.innerHTML = `Your email is invalid.`;
+	emailError.classList.add('visible');
+	emailError.setAttribute('aria-hidden', false);
+	emailError.setAttribute('aria-invalid', true);
+	return false;
+};
+
+let isNameTouched = false;
+let isEmailTouched = false;
+let isMsgTouched = false;
+
+const formValidation = () => {
+	const isNameEmpty = isNameTouched && checkEmptyField(nameField, nameError);
+	const isEmailEmpty =
+		isEmailTouched && checkEmptyField(emailField, emailError);
+	const isMsgEmpty = isMsgTouched && checkEmptyField(msgField, msgError);
+	if (isNameEmpty || isEmailEmpty || isMsgEmpty) {
+		submitBtn.disabled = true;
+	} else if (isNameTouched && isEmailTouched && isMsgTouched)
+		submitBtn.disabled = false;
+};
+
+nameField.addEventListener('focus', () => (isNameTouched = true));
+nameField.addEventListener('blur', formValidation);
+nameField.addEventListener('input', formValidation);
+
+emailField.addEventListener('focus', () => (isEmailTouched = true));
+emailField.addEventListener('blur', formValidation);
+emailField.addEventListener('input', formValidation);
+
+msgField.addEventListener('focus', () => (isMsgTouched = true));
+msgField.addEventListener('blur', formValidation);
+msgField.addEventListener('input', formValidation);
+
+const submitHandler = (e) => {
+	e.preventDefault();
+	successMsg.classList.add('successMsg-show');
+	setTimeout(function () {
+		successMsg.classList.remove('successMsg-show');
+	}, 4000);
+
+	nameField.value = '';
+	emailField.value = '';
+	msgField.value = '';
+	isNameTouched = false;
+	isEmailTouched = false;
+	isMsgTouched = false;
+	submitBtn.disabled = true;
+};
+// submitBtn.addEventListener('click', submitHandler);
+contactForm.addEventListener('submit', submitHandler);
